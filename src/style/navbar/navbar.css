@@ -1,0 +1,17 @@
+:root {
+    --navbar-item-width: 100px;
+}
+
+.navbar {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #dedede;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.navbar-item {
+    width: var(--navbar-item-width);
+    padding-right: 10px;
+}

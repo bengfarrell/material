@@ -1,0 +1,9 @@
+.button {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+}
+
+.button:focus {
+    outline: none;
+}
