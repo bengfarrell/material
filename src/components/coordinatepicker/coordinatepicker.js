@@ -4,7 +4,7 @@ import Template from './template.js';
 
 export default class CoordinatePicker extends HTMLElement {
     static get observedAttributes() {
-        return ['x', 'y', 'isDragging'];
+        return ['x', 'y', 'isDragging', 'backgroundColor'];
     }
 
     constructor() {
@@ -13,13 +13,14 @@ export default class CoordinatePicker extends HTMLElement {
         this.shadowRoot.innerHTML = Template.render();
         this.dom = MapDOM.map(this.shadowRoot);
         this.binding = Reflect.createBindings(this);
-        this.binding.addCallback((name, value) => this.refreshCoordinates(name, value));
+        this.binding.addCallback((name, value) => this.refreshCoordinates(name, value), ['x', 'y']);
+        this.binding.addCallback((name, value) => this.setBgColor(value), ['backgroundColor']);
         MapDOM.wireElements(document, 'mousemove, mouseup', e => this.eventHandler(e));
         MapDOM.wireElements(this, 'mousedown, mouseup', e => this.eventHandler(e));
     }
 
-    set color(rgb) {
-        this.style.backgroundColor = `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+    setBgColor(hex) {
+        this.style.backgroundColor = hex;
     }
 
     eventHandler(e) {

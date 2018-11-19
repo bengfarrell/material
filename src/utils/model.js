@@ -2,6 +2,6 @@ import ObservableObject from '../../node_modules/attrocity/src/observables/objec
 
 export default {
     data: new ObservableObject({
-        selectedObject: 'none',
+        selectedObject: 'none'
     })
 }

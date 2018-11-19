@@ -1,4 +1,6 @@
-import Navbar from "../../style/navbar/navbar.js";
+import SpectrumCore from '../../spectrum/spectrum-core.js';
+import SpectrumLight from '../../spectrum/spectrum-light.js';
+import SpectrumTabs from '../../spectrum/components/tabs/index.js';
 
 export default {
     render(items) {
@@ -8,13 +10,20 @@ export default {
     },
 
     html(items) {
-        return `<div class="navbar">${this.renderMenuItems(items)}</div>`;
+        return `<div class="spectrum spectrum--light spectrum--medium">
+                    <div class="spectrum-Tabs spectrum-Tabs--horizontal">
+                      ${this.renderMenuItems(items)}
+                      <div class="spectrum-Tabs-selectionIndicator" style="width: 27px; left: 0px;"></div>
+                    </div>
+                </div>`;
     },
 
     renderMenuItems(items) {
         let html = ``;
         for (let c = 0; c < items.length; c++) {
-            html += `<span class="navbar-item"><div class="color-swatch"></div> ${items[c].trim()}</span>`;
+            html += `<div wire="click" map="${items[c].trim()}" class="spectrum-Tabs-item" tabindex="0">
+                        <label class="spectrum-Tabs-itemLabel"><div class="color-swatch"></div>${items[c].trim()}</label>
+                      </div>`
         }
         return html;
     },
@@ -24,10 +33,6 @@ export default {
                     :host {
                         display: flex;
                         width: 100%;
-                    }
-                    
-                    .navbar-item {
-                        vertical-align: middle;
                     }
                     
                     .color-swatch {
@@ -50,7 +55,9 @@ export default {
 
     designSystem() {
         return `<style>
-                    ${Navbar.css()}
+                    ${SpectrumCore.css()}
+                    ${SpectrumLight.css()}
+                    ${SpectrumTabs.css()}
                 </style>`;
     }
 }

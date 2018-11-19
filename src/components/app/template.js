@@ -1,5 +1,5 @@
 import ObjectMenu from '../objectmenu/objectmenu.js';
-import BottomTray from '../bottomtray/bottomtray.js';
+import MaterialColorPicker from '../materialcolorpicker/materialcolorpicker.js';
 import Scene from '../scene/scene.js';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 
     html() {
         return `<mm-scene></mm-scene>
-                <mm-bottom-tray></mm-bottom-tray>
+                <mm-mat-colorpicker diffuse="#ff0000" specular="#ff0000" highlight="#ff0000"></mm-mat-colorpicker>
                 <div id="controls">
                   <mm-object-menu></mm-object-menu>
                 </div>`

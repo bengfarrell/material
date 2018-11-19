@@ -4,7 +4,7 @@ import Template from './template.js';
 
 export default class Slider extends HTMLElement {
     static get observedAttributes() {
-        return ['value', 'isDragging'];
+        return ['value', 'isDragging', 'backgroundColor'];
     }
 
     constructor() {
@@ -14,12 +14,13 @@ export default class Slider extends HTMLElement {
         this.dom = MapDOM.map(this.shadowRoot);
         this.binding = Reflect.createBindings(this);
         this.binding.addCallback((name, value) => this.refreshSlider(value), 'value');
+        this.binding.addCallback((name, value) => this.setColor(value), 'backgroundColor');
         MapDOM.wireElements(document, 'mousemove, mouseup', e => this.eventHandler(e));
         MapDOM.wireElements(this, 'mousedown, mouseup', e => this.eventHandler(e));
     }
 
-    set color(rgb) {
-        this.dom.overlay.style.background = `linear-gradient(to right, rgb(${rgb.r},${rgb.g},${rgb.b}) 0%, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 100%)`;
+    setColor(color) {
+        this.dom.overlay.style.background = `linear-gradient(to right, ${color} 0%, ${color}00 100%)`;
     }
 
     refreshSlider(value) {

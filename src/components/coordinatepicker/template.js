@@ -21,6 +21,7 @@ export default {
                     #bg-overlay-a {
                         width: 100%;
                         height: 100%;
+                        border-radius: 10px;
                         position: absolute;
                         background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
                     }
@@ -28,6 +29,7 @@ export default {
                     #bg-overlay-b {
                         width: 100%;
                         height: 100%;
+                        border-radius: 10px;
                         position: absolute;
                         background: linear-gradient(to bottom, transparent 0%, #000 100%);
                     }

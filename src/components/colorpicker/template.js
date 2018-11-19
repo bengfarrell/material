@@ -1,5 +1,10 @@
 import Slider from '../slider/slider.js';
 import CoordinatePicker from '../coordinatepicker/coordinatepicker.js';
+import Color from './color.js';
+
+import SpectrumCore from '../../spectrum/spectrum-core.js';
+import SpectrumLight from '../../spectrum/spectrum-light.js';
+import SpectrumTextField from '../../spectrum/components/textfield/index.js';
 
 export default {
     render() {
@@ -9,65 +14,95 @@ export default {
     },
 
     html() {
-        return `
-                <div id="left-container">
-                    <mm-slider wire="change" map="hue" id="hue-slider" value="50"></mm-slider>
-                    <mm-slider wire="change" map="transparency" id="transparency-slider"></mm-slider>
-                </div>
-                <div class="spacer"></div>
-                <mm-coord-picker wire="change" map="satbright" id="saturation-brightness"></mm-coord-picker>
-                <div class="spacer"></div>
-                <div id="text-inputs">
-                    <label><span>R:</span><input map="rInputValue" type="number" value="0"></label>
-                    <label><span>G:</span><input map="gInputValue" type="number" value="0"></label>
-                    <label><span>B:</span><input map="bInputValue" type="number" value="0"></label>
-                    <label><span>A:</span><input map="aInputValue" type="number" value="0"></label>
+        return `<div id="container" class="spectrum spectrum--light spectrum--medium">  
+                    <div class="row">
+                        <div id="slider-container">
+                            <mm-slider map="hue" id="hue-slider" value="50"></mm-slider>
+                            <mm-slider map="transparency" id="transparency-slider" value="0"></mm-slider>
+                        </div>
+                        
+                        <mm-coord-picker x="50" y="50" map="satbright" id="saturation-brightness"></mm-coord-picker>
+                    </div>
+   
+                    <div class="row">
+                        
+                        <div id="text-inputs">
+                            <div class="spectrum-DecoratedTextfield is-decorated">
+                              <label for="textInputR" class="spectrum-FieldLabel">Red</label>
+                              <input id="textInputR" map="textInputR" type="number" value="0" max="255" min="0" class="spectrum-Textfield spectrum-DecoratedTextfield-field" aria-invalid="false">
+                            </div>
+                            
+                            <div class="spectrum-DecoratedTextfield is-decorated">
+                              <label for="textInputG" class="spectrum-FieldLabel">Green</label>
+                              <input id="textInputG" map="textInputG" type="number" value="0" max="255" min="0" class="spectrum-Textfield spectrum-DecoratedTextfield-field" aria-invalid="false">
+                            </div>
+                            
+                            <div class="spectrum-DecoratedTextfield is-decorated">
+                              <label for="textInputB" class="spectrum-FieldLabel">Blue</label>
+                              <input id="textInputB" map="textInputB" type="number" value="0" max="255" min="0" class="spectrum-Textfield spectrum-DecoratedTextfield-field" aria-invalid="false">
+                            </div>
+                            
+                            <div class="spectrum-DecoratedTextfield is-decorated">
+                              <label for="textInputA" class="spectrum-FieldLabel">Alpha</label>
+                              <input id="textInputA" map="textInputA" type="number" value="0" max="255" min="0" class="spectrum-Textfield spectrum-DecoratedTextfield-field" aria-invalid="false">
+                            </div>
+                            
+                            <div class="spectrum-DecoratedTextfield is-decorated">
+                              <label for="textInputHex" class="spectrum-FieldLabel">Hex</label>
+                              <input id="textInputHex" map="textInputHex" type="text" class="spectrum-Textfield spectrum-DecoratedTextfield-field" aria-invalid="false">
+                            </div>
+                        </div>
+                        
+ 
+                    </div>
+
+                  
                 </div>`
     },
 
     css() {
         return `<style>
                     :host {
-                        display: flex;
                         width: 100%;
                     }
                     
-                    .spacer {
-                        width: 15px;
+                    #container {
+                        padding: 10px;
                     }
                     
                     #text-inputs {
-                        width: 75px;
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
                     }
                     
-                    #text-inputs label:not(:last-child) {
-                        display: block;
-                        padding-bottom: 4px;
+                    .row {
+                        display: flex;
                     }
-                    
-                    #text-inputs label span {
-                        width: 25px;
-                        display: inline-block;
-                    }
-                    
-                    #text-inputs input {
-                        display: inline-block;
-                        width: 35px;
-                    }
-                    
-                    #left-container {
+           
+                    #slider-container {
                         flex: 1;
+                        padding-right: 10px;
                     }
-    
+                   
+                    input.spectrum-Textfield {
+                        width: 72px;
+                    }
+                    
+                     input#textInputHex.spectrum-Textfield {
+                        width: 85px;
+                     }
+                
                     #hue-slider, #transparency-slider {
                         width: 100%;
                         height: 40px;
+                        margin-bottom: 5px;
                         border-radius: 10px;
                     }
                     
                     #saturation-brightness {
-                        width: 85px;
-                        height: 85px;
+                        width: 90px;
+                        height: 90px;
                         border-radius: 10px;
                     }
                     
@@ -84,6 +119,10 @@ export default {
     },
 
     designSystem() {
-        return ``;
+        return `<style>
+                    ${SpectrumCore.css()}
+                    ${SpectrumLight.css()}
+                    ${SpectrumTextField.css()}
+                </style>`;
     }
 }

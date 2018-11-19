@@ -12,7 +12,12 @@ export default class Navbar extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render(this.getAttribute('items').split(','));
         this.dom = MapDOM.map(this.shadowRoot);
+        MapDOM.wire(this.shadowRoot, e => this.onSelectTab(e));
         this.binding = Reflect.createBindings(this);
+    }
+
+    onSelectTab(e) {
+        console.log(e.currentTarget)
     }
 }
 

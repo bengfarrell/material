@@ -15,12 +15,14 @@ export default {
                     :host {
                         display: inline-block;
                         position: relative;
+                        border-radius: 10px;
                     }
                     
                     #bg-overlay {
                         width: 100%;
                         height: 100%;
                         position: absolute;
+                        border-radius: 10px;
                     }
                     
                     #thumb {
