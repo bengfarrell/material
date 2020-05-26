@@ -2,8 +2,7 @@
   "name": "matmaker",
   "version": "1.0.0",
   "dependencies": {
-    "@pureevil/attrocity": "^0.2.0",
-    "material-components-web-components": "https://github.com/material-components/material-components-web-components"
+    "@pureevil/attrocity": "^0.2.0"
   },
   "scripts": {
     "designsystem": "node bin/css2js.js './src/style/**/*.css'"
